@@ -11,12 +11,14 @@ import javax.validation.constraints.Size;
 @Data
 public class ResponseUser {
 
+    private Long memberId;
     private String email;
     private String name;
     private String pwd;
 
     public static ResponseUser createResponse(User user){
         ResponseUser response = new ResponseUser();
+        response.memberId = user.getMemberId();
         response.email = user.getEmail();
         response.name = user.getName();
         response.pwd = user.getEncryptedPwd();

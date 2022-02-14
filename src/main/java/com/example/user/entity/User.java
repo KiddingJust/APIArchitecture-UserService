@@ -1,5 +1,6 @@
 package com.example.user.entity;
 
+import com.example.user.dto.RequestUser;
 import lombok.Data;
 import lombok.Getter;
 
@@ -24,11 +25,21 @@ public class User {
     @Column(nullable = false, unique = true)
     private String encryptedPwd;
 
-    public static User createUser(String email, String name, String encryptedPwd){
+    @Column(nullable = false, unique = true)
+    private Long memberId;
+
+    public static User createUser(String email, String name, String encryptedPwd, Long memberId){
         User user = new User();
         user.email = email;
         user.name = name;
         user.encryptedPwd = encryptedPwd;
+        user.memberId = memberId;
         return user;
     }
+
+    public void updateUser(RequestUser user){
+        this.email = user.getEmail();
+        this.name = user.getName();
+    }
+
 }

@@ -68,7 +68,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 							.setExpiration(new Date(System.currentTimeMillis() + 
 											Long.parseLong("86400000")))
 							//사용할 알고리즘과 signature에 들어갈 secret 값 세팅
-							.signWith(SignatureAlgorithm.HS512, "user_token")
+							.signWith(SignatureAlgorithm.HS512, "ecommerce_token")
 							.compact();
 		
 		response.addHeader("token", token);

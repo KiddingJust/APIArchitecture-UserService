@@ -1,9 +1,10 @@
+
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/TESTDB
-    username: gaigatest
-    password: 6330sung
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/TESTDB
+#    username: gaigatest
+#    password: 6330sung
   jpa:
     hibernate:
       ddl-auto: create
@@ -11,12 +12,37 @@ spring:
       hibernate:
         format_sql: true
     open-in-view: false
-
   data:
     web:
       pageable:
         default-page-size: 10
       max-page-size: 2000
+  application:
+    name: userservice #config?? ? ?. userservice-dev.yml ? ???? ???.
+  kafka:
+    bootstrap-server: 127.0.0.1:9092
+  config:
+    import: configserver:http://127.0.0.1:8888
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, busrefresh
 
 logging.level:
   org.hibernate.SQL: debug
+server:
+  port: 8081
+#greetings: hello
+
+#eureka:
+#  instance:
+#    instanceId: ${spring.application.name}:${spring.application.instance_id:8081}
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka

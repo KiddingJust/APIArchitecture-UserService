@@ -30,7 +30,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 //								 "/user-service/**")
 //					.permitAll();
 		http.authorizeRequests().antMatchers("/actuator/**").permitAll();
-		//인증이 된 상태에서만 통과시키도록. 
+		//인증이 된 상태에서만 통과시키도록.
+		//-->정확히 말하면, 여기서는 login 성공 시에 토큰 발급해주는 것만 함.
+		//인증 여부와 관계 없이 모든 곳에 허용 --> 허용 안하려면 어떻게 해야하는지도 체크 필요함.
 		http.authorizeRequests()
 				.antMatchers("/**")
 				.permitAll()
